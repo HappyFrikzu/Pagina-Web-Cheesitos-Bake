@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheesitos Bake | Dashboard de Producción</title>
+    <style>
+        :root {
+            --primary: #d35400;
+            /* Naranja quemado */
+            --secondary: #f39c12;
+            /* Naranja suave */
+            --bg: #fdf6e3;
+            /* Crema */
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --success: #27ae60;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            color: var(--primary);
+            border-left: 5px solid var(--secondary);
+            padding-left: 10px;
+            margin-top: 30px;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Etiquetas */
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .tag-gf {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        /* Sin Gluten */
+        .tag-norm {
+            background-color: #3498db;
+            color: white;
+        }
+
+        /* Normal */
+
+        /* Checklist interactivo */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+
+        .checklist-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .checklist-item input {
+            margin-right: 10px;
+            transform: scale(1.3);
+        }
+
+        .checked {
+            text-decoration: line-through;
+            color: #aaa;
+        }
+
+        /* Cronograma */
+        .timeline-item {
+            border-left: 2px solid var(--secondary);
+            padding-left: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '⏰';
+            position: absolute;
+            left: -13px;
+            top: 0;
+            background: var(--bg);
+        }
+
+        /* Calculadora */
+        .calc-box {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .calc-input {
+            width: 100px;
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            background-color: var(--secondary);
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: var(--primary);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>🧀 Cheesitos Bake</h1>
+            <p class="subtitle">Dashboard de Planificación & Producción para la Feria</p>
+        </header>
+
+        <section>
+            <h2>1. 📋 Menú y Oferta</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>☕ Cafetería</h3>
+                    <ul>
+                        <li>Café / Té / Leche (Espumada)</li>
+                        <li>Endulzantes: Azúcar, Alulosa</li>
+                        <li><em>Insumos:</em> Vasos, agitadores, servilletas.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🍪 Galletas (Cajas)</h3>
+                    <p><span class="tag tag-gf">Sin Gluten</span> <span class="tag tag-norm">Normal</span></p>
+                    <ul>
+                        <li><strong>Caja Cítrica:</strong> Chispas Choco + Naranja</li>
+                        <li><strong>Caja Surtida (4 var):</strong> Manjar, Mermelada, Vainilla/Limón, Vainilla/Chispas.
+                        </li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🥖 Panes y Bizcochos</h3>
+                    <p><span class="tag tag-gf">Sin Gluten</span> <span class="tag tag-norm">Normal</span></p>
+                    <ul>
+                        <li><strong>Pan de Jamón:</strong> Estilo Venezolano.</li>
+                        <li><strong>Cheezy Ham:</strong> Pancito queso/jamón.</li>
+                        <li><strong>Bizcochos:</strong> Vainilla, Marmoleado.</li>
+                        <li><strong>Pie:</strong> Masa de Pie de Limón.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>2. 👩‍🍳 Mise en Place (Cronograma)</h2>
+            <div class="card">
+                <div class="timeline-item">
+                    <strong>Día de las Galletas (Día 1 - Producción Masiva)</strong>
+                    <p>Hacer TODAS las masas (SG primero, luego Normal) y ❄️ <strong>CONGELAR</strong>.</p>
+                </div>
+                <div class="timeline-item">
+                    <strong>Ciclo de 3 Días (Bizcochos y Panes)</strong>
+                    <p>Se hornean cada 3 días según demanda para mantener frescura.</p>
+                </div>
+                <div class="timeline-item">
+                    <strong>Previo a la Feria</strong>
+                    <p>Descongelar galletas necesarias y hornear. Comprar perecederos (Jamón/Queso).</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>3. 🛒 Lista de Compras Interactiva</h2>
+            <p><em>Haz click para tachar los ingredientes que ya tienes.</em></p>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>🌾 Secos y Polvos</h3>
+                    <div id="lista-secos"></div>
+                </div>
+                <div class="card">
+                    <h3>🧊 Frescos y Rellenos</h3>
+                    <div id="lista-frescos"></div>
+                </div>
+                <div class="card">
+                    <h3>🛍️ Packaging y Otros</h3>
+                    <div id="lista-insumos"></div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>4. 🧮 Calculadora Rápida (Pan de Jamón)</h2>
+            <div class="calc-box">
+                <p>Ingresa tus costos estimados para calcular el precio de venta:</p>
+                <label>Costo Total de Insumos ($): </label>
+                <input type="number" id="costoInsumos" class="calc-input" value="10000">
+                <br><br>
+                <button onclick="calcularPrecio()">Calcular Precio Sugerido</button>
+                <div id="resultadoCalc" style="margin-top: 15px; font-weight: bold;"></div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // DATOS DE LISTAS
+        const secos = ["Harina de Arroz", "Harina de Trigo", "Polvos de Hornear", "Bicarbonato", "Azúcar Blanca", "Azúcar Morena", "Alulosa", "Leche en Polvo", "Café", "Té", "Sal", "Aceite", "Esencia Vainilla", "Canela"];
+        const frescos = ["Huevos", "Mantequilla/Margarina", "Leche Líquida", "Manjar", "Jamón", "Queso", "Naranjas", "Limones", "Manzanas", "Fresas", "Chispas de Chocolate", "Nueces", "Frutos Confitados"];
+        const insumos = ["Aparato Espumador", "Vasos Café", "Platos Desechables", "Cucharas", "Servilletas", "Cajas Galletas", "Bolsas", "Capacillos (Muestras)", "STICKERS (SG vs Normal)"];
+
+        // FUNCIÓN PARA RENDERIZAR LISTAS
+        function renderList(items, elementId) {
+            const container = document.getElementById(elementId);
+            items.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'checklist-item';
+                div.innerHTML = `
+                <input type="checkbox" id="${elementId}-${index}" onclick="toggleItem(this)">
+                <label for="${elementId}-${index}">${item}</label>
+            `;
+                container.appendChild(div);
+            });
+        }
+
+        // FUNCIÓN DE INTERACTIVIDAD (TACHAR)
+        function toggleItem(checkbox) {
+            const label = checkbox.nextElementSibling;
+            if (checkbox.checked) {
+                label.classList.add('checked');
+            } else {
+                label.classList.remove('checked');
+            }
+        }
+
+        // FUNCIÓN CALCULADORA
+        function calcularPrecio() {
+            const costo = parseFloat(document.getElementById('costoInsumos').value);
+            if (!costo) return;
+
+            const costoTotal = costo * 1.10; // +10% gastos ocultos
+            const precioMin = costoTotal * 2;
+            const precioIdeal = costoTotal * 3;
+
+            document.getElementById('resultadoCalc').innerHTML = `
+            Costo Real (con 10% extra): $${costoTotal.toFixed(0)} <br>
+            --------------------------------------- <br>
+            💰 Precio Mínimo (x2): $${precioMin.toFixed(0)} <br>
+            🚀 Precio Ideal (x3): $${precioIdeal.toFixed(0)}
+        `;
+        }
+
+        // INICIALIZAR
+        renderList(secos, 'lista-secos');
+        renderList(frescos, 'lista-frescos');
+        renderList(insumos, 'lista-insumos');
+
+    </script>
+
+</body>
+
+</html>
